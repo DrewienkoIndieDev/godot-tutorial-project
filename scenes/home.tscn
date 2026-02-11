@@ -5,3 +5,8 @@
 [node name="Home" type="Node3D" unique_id=1313249242]
 
 [node name="House" parent="." unique_id=2139442278 instance=ExtResource("1_krot7")]
+
+[node name="BATHROOM_MIRROR_WALL" parent="House" index="7" unique_id=1090330048]
+layers = 4
+
+[editable path="House"]

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://w66s732kugci"]
+
+[ext_resource type="Shader" uid="uid://bqb4545id58xm" path="res://shaders/mirror.gdshader" id="1_5o7h0"]
+[ext_resource type="Script" uid="uid://cqx2umhqh223x" path="res://scripts/Furniture/mirror.gd" id="2_efpvx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_efpvx"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_55jyy"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ls0wk"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_5o7h0")
+shader_parameter/refl_tx = SubResource("ViewportTexture_55jyy")
+
+[node name="Mirror" type="MeshInstance3D" unique_id=1352744023]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_efpvx")
+surface_material_override/0 = SubResource("ShaderMaterial_ls0wk")
+script = ExtResource("2_efpvx")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=2056002049]
+
+[node name="MirrorCam" type="Camera3D" parent="SubViewport" unique_id=211210702]
+cull_mask = 1048571
+current = true
+
+[node name="DummyCam" type="Node3D" parent="." unique_id=1678203800]
