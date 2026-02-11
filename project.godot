@@ -15,9 +15,9 @@ run/main_scene="uid://bw5ce4s1mwogl"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
-[global_group]
+[autoload]
 
-interactable=""
+UiManager="*uid://biipuwikow4vi"
 
 [input]
 

@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://ctaindoqk62j4"]
 
+[ext_resource type="Script" uid="uid://c0rvkkv8tupx5" path="res://scripts/UI/interact_prompt.gd" id="1_xayhx"]
+
 [node name="InteractPrompt" type="Control" unique_id=269063973]
 layout_mode = 3
 anchors_preset = 15
@@ -8,6 +10,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("1_xayhx")
 
 [node name="Label" type="Label" parent="." unique_id=1651950146]
 layout_mode = 1

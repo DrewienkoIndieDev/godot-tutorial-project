@@ -52,13 +52,14 @@ var look_rotation : Vector2
 var move_speed : float = 0.0
 var freeflying : bool = false
 
+var current_interactable: Interactable = null
+
 ## IMPORTANT REFERENCES
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
 
 @onready var interact_ray: RayCast3D = $Head/Camera3D/InteractRay
 
-@onready var interact_prompt: Control = get_tree().get_root().get_node("Main/UIs/InteractPrompt")
 
 func _ready() -> void:
 	check_input_mappings()
@@ -126,14 +127,36 @@ func _physics_process(delta: float) -> void:
 	if interact_ray.is_colliding():
 		var interaction_collider := interact_ray.get_collider()
 		var interactable := find_interactable(interaction_collider)
+		
 		if interactable:
-			show_interact_prompt()
+			if interactable != current_interactable:
+				_set_current_interactable(interactable)
+			UiManager.show_interact_prompt(interactable.get_interact_prompt())
 		else:
-			hide_interact_prompt()
+			clear_current_interactable()
 	else:
-		hide_interact_prompt()
-	
+		clear_current_interactable()
+		
 	move_and_slide()
+
+
+func _set_current_interactable(interactable: Interactable):
+	clear_current_interactable()
+	current_interactable = interactable
+	current_interactable.interaction_state_changed.connect(_on_interactable_state_changed)
+
+
+func clear_current_interactable():
+	if current_interactable:
+		if current_interactable.interaction_state_changed.is_connected(_on_interactable_state_changed):
+			current_interactable.interaction_state_changed.disconnect(_on_interactable_state_changed)
+	current_interactable = null
+	UiManager.hide_interact_prompt()
+
+
+func _on_interactable_state_changed():
+	if current_interactable:
+		UiManager.show_interact_prompt(current_interactable.get_interact_prompt())
 
 
 func  _input(event: InputEvent) -> void:
@@ -154,24 +177,14 @@ func try_interact():
 		interactable.interact()
 
 
-# find interactables no matter where they are in an object by group
+# find interactables no matter where they are in an object by NOW BY CLASS
 func find_interactable(node: Node) -> Node:
 	var current := node
 	while current:
-		if current.is_in_group("interactable") and current.has_method("interact"):
+		if current is Interactable:
 			return current
 		current = current.get_parent()
 	return null
-
-
-func show_interact_prompt():
-	if interact_prompt and not interact_prompt.visible:
-		interact_prompt.visible = true
-
-
-func hide_interact_prompt():
-	if interact_prompt and interact_prompt.visible:
-		interact_prompt.visible = false
 
 
 ## Rotate us to look around.
@@ -197,6 +210,7 @@ func disable_freefly():
 	freeflying = false
 
 
+# I recommend putting these 2 in UIManager as well
 func capture_mouse():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	mouse_captured = true

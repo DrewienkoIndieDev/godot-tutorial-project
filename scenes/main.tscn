@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://ctaindoqk62j4" path="res://scenes/UI/interact_prompt.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://v7aqt7n1x5ys" path="res://scenes/Furniture/door.tscn" id="4_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://d3up02jb65rs5" path="res://scenes/Furniture/closet.tscn" id="5_tbgi4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 
@@ -60,3 +61,6 @@ input_jump = "jump"
 
 [node name="Door" parent="." unique_id=2133083268 instance=ExtResource("4_jyhfs")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.803043, 0.72728527, 0.58954155)
+
+[node name="Closet" parent="." unique_id=1882508994 instance=ExtResource("5_tbgi4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -4)
