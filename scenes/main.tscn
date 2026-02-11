@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cspjmf3li47tr" path="res://scenes/home.tscn" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://ctaindoqk62j4" path="res://scenes/UI/interact_prompt.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://v7aqt7n1x5ys" path="res://scenes/Furniture/door.tscn" id="4_jyhfs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 
@@ -51,3 +53,10 @@ input_right = "move_right"
 input_forward = "move_forward"
 input_back = "move_backward"
 input_jump = "jump"
+
+[node name="UIs" type="CanvasLayer" parent="." unique_id=1442716768]
+
+[node name="InteractPrompt" parent="UIs" unique_id=269063973 instance=ExtResource("3_sugp2")]
+
+[node name="Door" parent="." unique_id=2133083268 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.803043, 0.72728527, 0.58954155)

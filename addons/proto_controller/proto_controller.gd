@@ -44,6 +44,9 @@ extends CharacterBody3D
 ## Name of Input Action to toggle freefly mode.
 @export var input_freefly : String = "freefly"
 
+@export var interact_button := "interact" # E
+
+
 var mouse_captured : bool = false
 var look_rotation : Vector2
 var move_speed : float = 0.0
@@ -52,6 +55,10 @@ var freeflying : bool = false
 ## IMPORTANT REFERENCES
 @onready var head: Node3D = $Head
 @onready var collider: CollisionShape3D = $Collider
+
+@onready var interact_ray: RayCast3D = $Head/Camera3D/InteractRay
+
+@onready var interact_prompt: Control = get_tree().get_root().get_node("Main/UIs/InteractPrompt")
 
 func _ready() -> void:
 	check_input_mappings()
@@ -115,8 +122,56 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.y = 0
 	
-	# Use velocity to actually move
+	# check if interact ray is colliding with something interactable
+	if interact_ray.is_colliding():
+		var interaction_collider := interact_ray.get_collider()
+		var interactable := find_interactable(interaction_collider)
+		if interactable:
+			show_interact_prompt()
+		else:
+			hide_interact_prompt()
+	else:
+		hide_interact_prompt()
+	
 	move_and_slide()
+
+
+func  _input(event: InputEvent) -> void:
+	if event.is_action_pressed(interact_button):
+		try_interact()
+
+
+func try_interact():
+	if not interact_ray.is_colliding():
+		return
+	
+	var interaction_collider := interact_ray.get_collider()
+	if not interaction_collider:
+		return
+		
+	var interactable := find_interactable(interaction_collider)
+	if interactable:
+		interactable.interact()
+
+
+# find interactables no matter where they are in an object by group
+func find_interactable(node: Node) -> Node:
+	var current := node
+	while current:
+		if current.is_in_group("interactable") and current.has_method("interact"):
+			return current
+		current = current.get_parent()
+	return null
+
+
+func show_interact_prompt():
+	if interact_prompt and not interact_prompt.visible:
+		interact_prompt.visible = true
+
+
+func hide_interact_prompt():
+	if interact_prompt and interact_prompt.visible:
+		interact_prompt.visible = false
 
 
 ## Rotate us to look around.

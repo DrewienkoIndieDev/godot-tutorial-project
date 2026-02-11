@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://v7aqt7n1x5ys"]
+
+[ext_resource type="Script" uid="uid://dxuq23xnbdmai" path="res://scripts/Furniture/door.gd" id="1_61hf0"]
+[ext_resource type="PackedScene" uid="uid://bcsi3l0n4ik2t" path="res://assets/door/door.glb" id="2_oya7o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uvdjg"]
+size = Vector3(2.3012695, 1.1611633, 0.20626831)
+
+[node name="Door" type="Node3D" unique_id=2133083268 groups=["interactable"]]
+script = ExtResource("1_61hf0")
+
+[node name="door" parent="." unique_id=450844597 instance=ExtResource("2_oya7o")]
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="door/FrameBone/Skeleton3D" parent_id_path=PackedInt32Array(450844597, 936422184) index="3" unique_id=1129272710]
+transform = Transform3D(0, -1, -1.7763568e-15, 1, 0, -3.6936733e-08, 3.6936733e-08, 1.7763568e-15, 1, 0.50037944, 1.0594593, 0)
+bone_name = "Bone"
+bone_idx = 0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="door/FrameBone/Skeleton3D/BoneAttachment3D" unique_id=236080805]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door/FrameBone/Skeleton3D/BoneAttachment3D/StaticBody3D" unique_id=2112326539]
+transform = Transform3D(0.99999756, -5.5280225e-12, -6.714629e-13, 5.5280225e-12, 0.99999756, -1.3711346e-19, 7.6028073e-13, 1.5574232e-19, 1, 0.09106302, 0.5493912, 0.0002593961)
+shape = SubResource("BoxShape3D_uvdjg")
+
+[editable path="door"]
