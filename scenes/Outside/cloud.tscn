@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://cqcfw1r03t7wu"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_xfa4x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlwrh"]
+transparency = 1
+shading_mode = 2
+albedo_color = Color(1, 1, 1, 0.15686275)
+
+[node name="Cloud" type="Node3D" unique_id=1856362286]
+
+[node name="SingleCloud" type="MeshInstance3D" parent="." unique_id=2020488075]
+transform = Transform3D(117.85253, 0, 0, 0, 10.158748, 0, 0, 0, 45.07786, 0, 0, 0)
+mesh = SubResource("SphereMesh_xfa4x")
+surface_material_override/0 = SubResource("StandardMaterial3D_vlwrh")

@@ -1,21 +1,27 @@
 [gd_scene format=3 uid="uid://bw5ce4s1mwogl"]
 
 [ext_resource type="PackedScene" uid="uid://cspjmf3li47tr" path="res://scenes/home.tscn" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://drse248drub5g" path="res://scripts/DayNightCycle.gd" id="1_eb6dy"]
 [ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="2_sugp2"]
+[ext_resource type="Environment" uid="uid://t4eq4taqu6b4" path="res://recources/environment/env_day.tres" id="2_trceg"]
+[ext_resource type="Environment" uid="uid://chrl4vf3pw5oq" path="res://recources/environment/env_night.tres" id="3_a8y0u"]
 [ext_resource type="PackedScene" uid="uid://ctaindoqk62j4" path="res://scenes/UI/interact_prompt.tscn" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cqcfw1r03t7wu" path="res://scenes/Outside/cloud.tscn" id="4_jkv2x"]
 [ext_resource type="PackedScene" uid="uid://v7aqt7n1x5ys" path="res://scenes/Furniture/door.tscn" id="4_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://c7gq37dmmmbfe" path="res://assets/dayNight/MoonTex.png" id="5_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://d3up02jb65rs5" path="res://scenes/Furniture/closet.tscn" id="5_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cdjgghjigdq12" path="res://scenes/Furniture/light_switch.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://ca72qdhpp6k4c" path="res://scenes/Furniture/roof_lamp.tscn" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://cctth0cbgkil1" path="res://scenes/Outside/tree.tscn" id="13_trceg"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
+[sub_resource type="Environment" id="Environment_muem4"]
 
-[sub_resource type="Sky" id="Sky_o5qli"]
-sky_material = SubResource("ProceduralSkyMaterial_sgp6g")
+[sub_resource type="SphereMesh" id="SphereMesh_dp3eg"]
 
-[sub_resource type="Environment" id="Environment_0wfyh"]
-background_mode = 2
-sky = SubResource("Sky_o5qli")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ld40"]
+shading_mode = 0
+albedo_color = Color(1.8247963, 1.8247963, 1.8247963, 1)
+albedo_texture = ExtResource("5_jbj1t")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sugp2"]
 size = Vector3(257, 1, 258)
@@ -27,11 +33,36 @@ albedo_color = Color(0.059792817, 0.38387853, 5.7756904e-07, 1)
 
 [node name="Main" type="Node3D" unique_id=817326526]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1610851950]
-environment = SubResource("Environment_0wfyh")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1610851950 node_paths=PackedStringArray("sun", "moon_light", "moon_pivot", "clouds_pivot")]
+environment = SubResource("Environment_muem4")
+script = ExtResource("1_eb6dy")
+sun = NodePath("../Sun")
+moon_light = NodePath("../MoonLight")
+moon_pivot = NodePath("../MoonPivot")
+env_day = ExtResource("2_trceg")
+env_night = ExtResource("3_a8y0u")
+cloud_scene = ExtResource("4_jkv2x")
+clouds_pivot = NodePath("../CloudsPivot")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=802984125]
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=802984125]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.8660254, 0, -0.8660254, 0.49999997, 0, 3, 0)
+light_angular_distance = 0.5
+shadow_enabled = true
+
+[node name="MoonLight" type="DirectionalLight3D" parent="." unique_id=172051860]
+light_color = Color(0.68457294, 0.9962166, 0.9999998, 1)
+light_energy = 0.05
+shadow_enabled = true
+
+[node name="MoonPivot" type="Node3D" parent="." unique_id=1680537796]
+
+[node name="Moon" type="MeshInstance3D" parent="MoonPivot" unique_id=1050955218]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 291.05856)
+cast_shadow = 0
+mesh = SubResource("SphereMesh_dp3eg")
+surface_material_override/0 = SubResource("StandardMaterial3D_0ld40")
+
+[node name="CloudsPivot" type="Node3D" parent="." unique_id=1245452575]
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=1435256068]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49555862, 0)
@@ -73,3 +104,68 @@ lamp_path = NodePath("../RoofLamp")
 
 [node name="RoofLamp" parent="." unique_id=651295854 instance=ExtResource("7_tipki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6195931, 3.9526706, 0.12571621)
+
+[node name="Trees" type="Node" parent="." unique_id=747695488]
+
+[node name="Tree" parent="Trees" unique_id=86257056 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.27586, 0.037859917, 9.298901)
+
+[node name="Tree2" parent="Trees" unique_id=1117258426 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.27586, 0.037859917, -4.5665283)
+
+[node name="Tree3" parent="Trees" unique_id=2142614187 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.54579, 0.037859917, -4.5665283)
+
+[node name="Tree4" parent="Trees" unique_id=1404802831 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.54579, 0.037859917, 4.308487)
+
+[node name="Tree5" parent="Trees" unique_id=90126607 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.08651, 0.037859917, 4.308487)
+
+[node name="Tree6" parent="Trees" unique_id=1721404554 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.08651, 0.037859917, 15.163)
+
+[node name="Tree7" parent="Trees" unique_id=429814315 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9819, 0.037859917, 15.163)
+
+[node name="Tree8" parent="Trees" unique_id=941629319 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.27586, 0.037859917, -21.880692)
+
+[node name="Tree9" parent="Trees" unique_id=1495886156 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.27586, 0.037859917, -35.74612)
+
+[node name="Tree10" parent="Trees" unique_id=1027111811 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.54579, 0.037859917, -35.74612)
+
+[node name="Tree11" parent="Trees" unique_id=778974312 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.54579, 0.037859917, -26.871105)
+
+[node name="Tree12" parent="Trees" unique_id=1499815498 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.08651, 0.037859917, -26.871105)
+
+[node name="Tree13" parent="Trees" unique_id=1542071557 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.08651, 0.037859917, -16.016592)
+
+[node name="Tree14" parent="Trees" unique_id=1405033872 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9819, 0.037859917, -16.016592)
+
+[node name="Tree15" parent="Trees" unique_id=161287842 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.27586, 0.037859917, 38.802635)
+
+[node name="Tree16" parent="Trees" unique_id=261033847 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.27586, 0.037859917, 24.937206)
+
+[node name="Tree17" parent="Trees" unique_id=316237789 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.54579, 0.037859917, 24.937206)
+
+[node name="Tree18" parent="Trees" unique_id=1403529377 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.54579, 0.037859917, 33.81222)
+
+[node name="Tree19" parent="Trees" unique_id=27220357 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.08651, 0.037859917, 33.81222)
+
+[node name="Tree20" parent="Trees" unique_id=486224772 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.08651, 0.037859917, 44.666733)
+
+[node name="Tree21" parent="Trees" unique_id=1765475324 instance=ExtResource("13_trceg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9819, 0.037859917, 44.666733)
