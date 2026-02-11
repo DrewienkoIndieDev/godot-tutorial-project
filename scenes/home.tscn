@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cspjmf3li47tr"]
+
+[ext_resource type="PackedScene" uid="uid://c8jkyhgfyxnub" path="res://assets/House/House.glb" id="1_krot7"]
+
+[node name="Home" type="Node3D" unique_id=1313249242]
+
+[node name="House" parent="." unique_id=2139442278 instance=ExtResource("1_krot7")]

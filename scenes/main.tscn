@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bw5ce4s1mwogl"]
+
+[ext_resource type="PackedScene" uid="uid://cspjmf3li47tr" path="res://scenes/home.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="2_sugp2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
+
+[sub_resource type="Sky" id="Sky_o5qli"]
+sky_material = SubResource("ProceduralSkyMaterial_sgp6g")
+
+[sub_resource type="Environment" id="Environment_0wfyh"]
+background_mode = 2
+sky = SubResource("Sky_o5qli")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sugp2"]
+size = Vector3(257, 1, 258)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jyhfs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
+albedo_color = Color(0.059792817, 0.38387853, 5.7756904e-07, 1)
+
+[node name="Main" type="Node3D" unique_id=817326526]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1610851950]
+environment = SubResource("Environment_0wfyh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=802984125]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.8660254, 0, -0.8660254, 0.49999997, 0, 3, 0)
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1435256068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.49555862, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=1466215618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0.5)
+shape = SubResource("BoxShape3D_sugp2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=1595863653]
+transform = Transform3D(252.12604, 0, 0, 0, 1, 0, 0, 0, 255.02403, 0, 0, 0)
+mesh = SubResource("BoxMesh_jyhfs")
+surface_material_override/0 = SubResource("StandardMaterial3D_tbgi4")
+
+[node name="Home" parent="." unique_id=1313249242 instance=ExtResource("1_0wfyh")]
+
+[node name="ProtoController" parent="." unique_id=750569988 instance=ExtResource("2_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+can_sprint = true
+can_freefly = true
+input_left = "move_left"
+input_right = "move_right"
+input_forward = "move_forward"
+input_back = "move_backward"
+input_jump = "jump"
