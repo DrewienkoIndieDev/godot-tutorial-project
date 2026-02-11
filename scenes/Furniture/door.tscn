@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://v7aqt7n1x5ys"]
 
-[ext_resource type="Script" uid="uid://dxuq23xnbdmai" path="res://scripts/Furniture/door.gd" id="1_61hf0"]
+[ext_resource type="Script" uid="uid://b785mdpecc7da" path="res://scripts/Interactable/interactableFurniture.gd" id="1_61hf0"]
 [ext_resource type="PackedScene" uid="uid://bcsi3l0n4ik2t" path="res://assets/door/door.glb" id="2_oya7o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_uvdjg"]
 size = Vector3(2.3012695, 1.1611633, 0.20626831)
 
-[node name="Door" type="Node3D" unique_id=2133083268 groups=["interactable"]]
+[node name="Door" type="Node3D" unique_id=2133083268]
 script = ExtResource("1_61hf0")
+animation_name = "Animation"
+animation_path = NodePath("door/AnimationPlayer")
+furniture_name = "door"
 
 [node name="door" parent="." unique_id=450844597 instance=ExtResource("2_oya7o")]
 

@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://d3up02jb65rs5"]
+
+[ext_resource type="Script" uid="uid://b785mdpecc7da" path="res://scripts/Interactable/interactableFurniture.gd" id="1_p3nu1"]
+[ext_resource type="PackedScene" uid="uid://c0k1upvwplpo6" path="res://assets/closet/Closet.glb" id="2_mtd7d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_poclj"]
+size = Vector3(4.604004, 1.052185, 0.10668945)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p3nu1"]
+size = Vector3(4.5983887, 1.0759277, 0.087890625)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ikilo"]
+size = Vector3(1, 0.050231934, 0.81311035)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p7a0a"]
+size = Vector3(0.063964844, 1.9746094, 0.78759766)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j6m83"]
+size = Vector3(1, 1.9526367, 0.06341553)
+
+[node name="Closet" type="Node3D" unique_id=1882508994]
+script = ExtResource("1_p3nu1")
+animation_name = "Animation"
+animation_path = NodePath("Closet2/AnimationPlayer")
+furniture_name = "closet"
+
+[node name="Closet2" parent="." unique_id=1861825740 instance=ExtResource("2_mtd7d")]
+
+[node name="Skeleton3D" parent="Closet2/RightDoorBone" parent_id_path=PackedInt32Array(1861825740, 493212721) index="0" unique_id=1120644198]
+bones/0/rotation = Quaternion(0, 0, 0, 1)
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Closet2/RightDoorBone/Skeleton3D" index="2" unique_id=1205547139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.352986e-08, -6.276066e-08, 0)
+bone_name = "Bone"
+bone_idx = 0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Closet2/RightDoorBone/Skeleton3D/BoneAttachment3D" unique_id=994138589]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Closet2/RightDoorBone/Skeleton3D/BoneAttachment3D/StaticBody3D" unique_id=1764269175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03686595, 0.5372627, -0.005737424)
+shape = SubResource("BoxShape3D_poclj")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Closet2/LeftDoorBone/Skeleton3D" parent_id_path=PackedInt32Array(1861825740, 771707473) index="2" unique_id=1348770063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1540258e-07, -2.3819808e-08, 0)
+bone_name = "Bone"
+bone_idx = 0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Closet2/LeftDoorBone/Skeleton3D/BoneAttachment3D" unique_id=1868323357]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Closet2/LeftDoorBone/Skeleton3D/BoneAttachment3D/StaticBody3D" unique_id=905776578]
+transform = Transform3D(1, 0, 0, 6.281198e-12, 1, 0, 0, 0, 1, 0.05163622, 0.4927981, 0)
+shape = SubResource("BoxShape3D_p3nu1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1516678997]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=957412775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07455444, 0.011291504)
+shape = SubResource("BoxShape3D_ikilo")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" unique_id=1173098892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0198855, 0.018066406)
+shape = SubResource("BoxShape3D_ikilo")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" unique_id=79283883]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.46801758, 1.0473242, 0.012451172)
+shape = SubResource("BoxShape3D_p7a0a")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" unique_id=168166698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47370255, 1.0473242, 0.012451172)
+shape = SubResource("BoxShape3D_p7a0a")
+
+[node name="CollisionShape3D5" type="CollisionShape3D" parent="StaticBody3D" unique_id=1206092891]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0493069, -0.35269165)
+shape = SubResource("BoxShape3D_j6m83")
+
+[editable path="Closet2"]
