@@ -1,0 +1,27 @@
+[gd_resource type="Environment" format=3 uid="uid://chrl4vf3pw5oq"]
+
+[ext_resource type="Texture2D" uid="uid://ws3rkinv4lxt" path="res://assets/dayNight/NightSkyTex.png" id="1_pfj68"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_choun"]
+rayleigh_color = Color(0.18069577, 0.3475151, 0.85742027, 1)
+mie_eccentricity = 0.85
+mie_color = Color(0.7179811, 0.7464744, 0.6125562, 1)
+turbidity = 35.0
+sun_disk_scale = 6.0
+night_sky = ExtResource("1_pfj68")
+
+[sub_resource type="Sky" id="Sky_ya4ey"]
+sky_material = SubResource("PhysicalSkyMaterial_choun")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_ya4ey")
+ambient_light_source = 2
+ambient_light_color = Color(0.35531357, 0.35531357, 0.3553135, 1)
+ambient_light_energy = 0.1
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_strength = 1.6
+glow_bloom = 0.05
+glow_blend_mode = 0

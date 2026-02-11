@@ -1,0 +1,21 @@
+[gd_resource type="Environment" format=3 uid="uid://t4eq4taqu6b4"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_xl18s"]
+rayleigh_color = Color(0.17595679, 0.3706352, 0.80373, 1)
+mie_eccentricity = 0.85
+mie_color = Color(0.759774, 0.73920864, 0.5245837, 1)
+turbidity = 35.0
+sun_disk_scale = 6.0
+
+[sub_resource type="Sky" id="Sky_msvur"]
+sky_material = SubResource("PhysicalSkyMaterial_xl18s")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_msvur")
+ssao_enabled = true
+sdfgi_enabled = true
+glow_enabled = true
+glow_strength = 1.6
+glow_bloom = 0.05
+glow_blend_mode = 0
