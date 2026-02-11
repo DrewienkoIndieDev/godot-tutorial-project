@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bks7k30mt8ifl"]
+
+[ext_resource type="PackedScene" uid="uid://c3p6k2xrsgh46" path="res://assets/mirror/BathroomMirror.glb" id="1_bkqfu"]
+[ext_resource type="PackedScene" uid="uid://w66s732kugci" path="res://scenes/Furniture/mirror.tscn" id="2_tiu3p"]
+[ext_resource type="Shader" uid="uid://bqb4545id58xm" path="res://shaders/mirror.gdshader" id="3_160xt"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1j64e"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvsk8"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_160xt")
+shader_parameter/refl_tx = SubResource("ViewportTexture_1j64e")
+
+[node name="BathroomMirror" type="Node3D" unique_id=766376640]
+
+[node name="BathroomMirror" parent="." unique_id=476961761 instance=ExtResource("1_bkqfu")]
+
+[node name="Cube" parent="BathroomMirror" index="0" unique_id=1623823576]
+layers = 4
+
+[node name="Mirror" parent="." unique_id=1352744023 instance=ExtResource("2_tiu3p")]
+transform = Transform3D(-3.7493724e-08, 1, 2.018351e-08, 0, -4.371139e-08, 0.46174487, 0.8577564, 4.371139e-08, 8.8224924e-16, 0.019102305, 0.50704396, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_gvsk8")
+
+[editable path="BathroomMirror"]

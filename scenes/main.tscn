@@ -13,6 +13,9 @@
 [ext_resource type="PackedScene" uid="uid://cdjgghjigdq12" path="res://scenes/Furniture/light_switch.tscn" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://ca72qdhpp6k4c" path="res://scenes/Furniture/roof_lamp.tscn" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://cctth0cbgkil1" path="res://scenes/Outside/tree.tscn" id="13_trceg"]
+[ext_resource type="PackedScene" uid="uid://w66s732kugci" path="res://scenes/Furniture/mirror.tscn" id="14_jkv2x"]
+[ext_resource type="Shader" uid="uid://bqb4545id58xm" path="res://shaders/mirror.gdshader" id="15_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://bks7k30mt8ifl" path="res://scenes/Furniture/bathroom_mirror.tscn" id="16_jbj1t"]
 
 [sub_resource type="Environment" id="Environment_muem4"]
 
@@ -30,6 +33,15 @@ size = Vector3(257, 1, 258)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
 albedo_color = Color(0.059792817, 0.38387853, 5.7756904e-07, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_muem4"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dp3eg"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("15_jbj1t")
+shader_parameter/refl_tx = SubResource("ViewportTexture_muem4")
 
 [node name="Main" type="Node3D" unique_id=817326526]
 
@@ -169,3 +181,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.08651, 0.037859917, 44.666
 
 [node name="Tree21" parent="Trees" unique_id=1765475324 instance=ExtResource("13_trceg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.9819, 0.037859917, 44.666733)
+
+[node name="Mirror" parent="." unique_id=1352744023 instance=ExtResource("14_jkv2x")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 20, 1, 3)
+surface_material_override/0 = SubResource("ShaderMaterial_dp3eg")
+
+[node name="BathroomMirror" parent="." unique_id=766376640 instance=ExtResource("16_jbj1t")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.7829337, 1.9875298, 5.7964616)

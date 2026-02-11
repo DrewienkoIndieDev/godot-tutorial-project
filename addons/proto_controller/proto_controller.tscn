@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bs72ogkvdd7d6"]
 
 [ext_resource type="Script" uid="uid://dph4v3r3b2oqh" path="res://addons/proto_controller/proto_controller.gd" id="1_ucva2"]
+[ext_resource type="Script" uid="uid://t6fk18jrcn32" path="res://addons/proto_controller/camera_3d.gd" id="2_wr06p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -30,6 +31,7 @@ shape = SubResource("CapsuleShape3D_iof21")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1776362055]
+script = ExtResource("2_wr06p")
 
 [node name="InteractRay" type="RayCast3D" parent="Head/Camera3D" unique_id=1325544425]
 transform = Transform3D(1, 0, 0, 0, -1.5788555e-07, -0.9999999, 0, 3.6120002, -4.3711385e-08, 0, 0, 0)
