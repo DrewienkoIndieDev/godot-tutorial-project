@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cdjgghjigdq12"]
+
+[ext_resource type="Script" uid="uid://dmnklkkcb4cmd" path="res://scripts/Furniture/light_switch.gd" id="1_4eyrm"]
+[ext_resource type="PackedScene" uid="uid://ck6udcu60mfil" path="res://assets/lightSwitch/LightSwitch.glb" id="2_pi61k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0b3mj"]
+size = Vector3(0.630249, 0.7504883, 0.044189453)
+
+[node name="LightSwitch" type="StaticBody3D" unique_id=2103604278]
+collision_layer = 3
+script = ExtResource("1_4eyrm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1421717050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00579834, 0.006591797, 0.014770508)
+shape = SubResource("BoxShape3D_0b3mj")
+
+[node name="LightSwitch" parent="." unique_id=2027287440 instance=ExtResource("2_pi61k")]
+
+[editable path="LightSwitch"]

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ca72qdhpp6k4c"]
+
+[ext_resource type="PackedScene" uid="uid://cc2ruuvq8r12" path="res://assets/roofLamp/Lamp.glb" id="1_jkumw"]
+[ext_resource type="Script" uid="uid://t8c7hc3hjsrw" path="res://scripts/Furniture/roof_lamp.gd" id="1_ycslm"]
+
+[node name="RoofLamp" type="Node3D" unique_id=651295854]
+script = ExtResource("1_ycslm")
+
+[node name="Lamp" parent="." unique_id=1309632918 instance=ExtResource("1_jkumw")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1890246304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1285095, 0)
+light_energy = 1.2
+shadow_enabled = true
+omni_range = 7.2015743

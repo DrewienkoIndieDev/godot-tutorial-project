@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://ctaindoqk62j4" path="res://scenes/UI/interact_prompt.tscn" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://v7aqt7n1x5ys" path="res://scenes/Furniture/door.tscn" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://d3up02jb65rs5" path="res://scenes/Furniture/closet.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://cdjgghjigdq12" path="res://scenes/Furniture/light_switch.tscn" id="6_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://ca72qdhpp6k4c" path="res://scenes/Furniture/roof_lamp.tscn" id="7_tipki"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 
@@ -64,3 +66,10 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.80
 
 [node name="Closet" parent="." unique_id=1882508994 instance=ExtResource("5_tbgi4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1, -4)
+
+[node name="LightSwitch" parent="." unique_id=2103604278 instance=ExtResource("6_o6xl0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9411716, 2.190043, -4.7373195)
+lamp_path = NodePath("../RoofLamp")
+
+[node name="RoofLamp" parent="." unique_id=651295854 instance=ExtResource("7_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6195931, 3.9526706, 0.12571621)
