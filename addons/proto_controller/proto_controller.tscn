@@ -36,3 +36,4 @@ script = ExtResource("2_wr06p")
 [node name="InteractRay" type="RayCast3D" parent="Head/Camera3D" unique_id=1325544425]
 transform = Transform3D(1, 0, 0, 0, -1.5788555e-07, -0.9999999, 0, 3.6120002, -4.3711385e-08, 0, 0, 0)
 collision_mask = 2
+collide_with_areas = true

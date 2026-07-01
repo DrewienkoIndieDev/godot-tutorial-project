@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="DialogicStyle" format=3 uid="uid://ba8ow0inc1c6b"]
+
+[ext_resource type="Resource" uid="uid://bjyqa5du8xhkc" path="res://recources/style/MC_Style.tres" id="1_8lq7v"]
+[ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_i0y2n"]
+[ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="3_dr53a"]
+
+[sub_resource type="Resource" id="Resource_18hn3"]
+script = ExtResource("2_i0y2n")
+
+[sub_resource type="Resource" id="Resource_6t6tb"]
+script = ExtResource("2_i0y2n")
+
+[sub_resource type="Resource" id="Resource_4xj7r"]
+script = ExtResource("2_i0y2n")
+
+[sub_resource type="Resource" id="Resource_ivvwl"]
+script = ExtResource("2_i0y2n")
+
+[sub_resource type="Resource" id="Resource_hk00s"]
+script = ExtResource("2_i0y2n")
+overrides = {
+"box_color_custom": "Color(0.6627451, 0.74705887, 1, 1)",
+"name_label_box_modulate": "Color(0.67849267, 0.6117647, 1, 1)"
+}
+
+[sub_resource type="Resource" id="Resource_ets61"]
+script = ExtResource("2_i0y2n")
+
+[sub_resource type="Resource" id="Resource_heq1c"]
+script = ExtResource("2_i0y2n")
+
+[sub_resource type="Resource" id="Resource_e12fp"]
+script = ExtResource("2_i0y2n")
+
+[sub_resource type="Resource" id="Resource_j4krm"]
+script = ExtResource("2_i0y2n")
+
+[resource]
+script = ExtResource("3_dr53a")
+name = "Nonody_style"
+inherits = ExtResource("1_8lq7v")
+layer_list = Array[String](["10", "11", "12", "13", "14", "15", "16", "17"])
+layer_info = {
+"": SubResource("Resource_18hn3"),
+"10": SubResource("Resource_6t6tb"),
+"11": SubResource("Resource_4xj7r"),
+"12": SubResource("Resource_ivvwl"),
+"13": SubResource("Resource_hk00s"),
+"14": SubResource("Resource_ets61"),
+"15": SubResource("Resource_heq1c"),
+"16": SubResource("Resource_e12fp"),
+"17": SubResource("Resource_j4krm")
+}
+metadata/_latest_layer = "13"

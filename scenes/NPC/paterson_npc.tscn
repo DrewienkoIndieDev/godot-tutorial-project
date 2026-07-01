@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://d38jlca0d75cs"]
+
+[ext_resource type="Script" uid="uid://qicdkkfa24cs" path="res://scripts/NPC/animated_object.gd" id="1_cq4gs"]
+[ext_resource type="PackedScene" uid="uid://cetcpj5tqe5xy" path="res://assets/StickPatenson/StickPatenson.glb" id="2_qivam"]
+[ext_resource type="Script" uid="uid://wi17niu4kdic" path="res://scripts/NPC/npc_interactable.gd" id="3_qivam"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0dfsp"]
+size = Vector3(0.45458984, 2.3518066, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d2uub"]
+size = Vector3(1, 2.3931274, 1.3999023)
+
+[node name="PatersonNPC" type="CharacterBody3D" unique_id=1908917951]
+collision_layer = 3
+script = ExtResource("1_cq4gs")
+animation_path = NodePath("StickPatenson/AnimationPlayer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1314655115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.005126953, 1.1790771, 0)
+shape = SubResource("BoxShape3D_0dfsp")
+
+[node name="StickPatenson" parent="." unique_id=1644436356 instance=ExtResource("2_qivam")]
+
+[node name="Skeleton3D" parent="StickPatenson/Armature" parent_id_path=PackedInt32Array(1644436356, 2031187630) index="0" unique_id=1916055179]
+bones/3/rotation = Quaternion(-7.358822e-08, 6.519106e-08, 0.8628926, 0.5053873)
+bones/5/rotation = Quaternion(1.1357118e-14, 1.2434498e-14, 1.2142377e-21, 1)
+
+[node name="InteractionArea" type="Area3D" parent="." unique_id=809426146]
+collision_layer = 3
+script = ExtResource("3_qivam")
+object_name = "Paterson"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" unique_id=2079719455]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1775818, 0.008544922)
+shape = SubResource("BoxShape3D_d2uub")
+
+[editable path="StickPatenson"]
