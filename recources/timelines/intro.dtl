@@ -1,0 +1,21 @@
+Whats your name?
+MC: My name? why do you want to know?
+[signal arg="print"]
+Nonody: Just say it!
+label name_input
+[text_input text="Please enter your Name:" var="Intro.character_name" placeholder="name" default="John"]
+Are you sure, thats your name?
+- Yes
+	if {Intro.character_name}.to_lower() == "bill" or {Intro.character_name}.to_lower() == "mark":
+		MC: I like that name
+		set {Intro.answer_like} = true
+	elif {Intro.character_name}.to_lower() == "yourmom":
+		MC: Wow, how funny...
+- No
+	jump name_input
+- no idea
+	MC: I dont know
+MC: Okay, thats my name, {Intro.character_name}
+if {Intro.answer_like} == true:
+	MC: At least i like my name
+MC: This is THE BEST!

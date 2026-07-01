@@ -47,7 +47,7 @@ extends CharacterBody3D
 @export var interact_button := "interact" # E
 
 
-var mouse_captured : bool = false
+
 var look_rotation : Vector2
 var move_speed : float = 0.0
 var freeflying : bool = false
@@ -67,14 +67,16 @@ func _ready() -> void:
 	look_rotation.x = head.rotation.x
 
 func _unhandled_input(event: InputEvent) -> void:
+	if UiManager.is_dialogue_locked():
+		return
 	# Mouse capturing
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		capture_mouse()
+		UiManager.capture_mouse()
 	if Input.is_key_pressed(KEY_ESCAPE):
-		release_mouse()
+		UiManager.release_mouse()
 	
 	# Look around
-	if mouse_captured and event is InputEventMouseMotion:
+	if UiManager.mouse_captured and event is InputEventMouseMotion:
 		rotate_look(event.relative)
 	
 	# Toggle freefly mode
@@ -97,6 +99,9 @@ func _physics_process(delta: float) -> void:
 	if has_gravity:
 		if not is_on_floor():
 			velocity += get_gravity() * delta
+			
+	if UiManager.is_dialogue_locked():
+		return
 
 	# Apply jumping
 	if can_jump:
@@ -208,17 +213,6 @@ func enable_freefly():
 func disable_freefly():
 	collider.disabled = false
 	freeflying = false
-
-
-# I recommend putting these 2 in UIManager as well
-func capture_mouse():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	mouse_captured = true
-
-
-func release_mouse():
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	mouse_captured = false
 
 
 ## Checks if some Input Actions haven't been created.

@@ -25,8 +25,8 @@ var cloud_min_z := -600.0
 var cloud_max_z := 600.0
 
 # 0 -> 1 (0.0 = sunrise, 0.25 = noon, 0.5 = sunset, 0.75 = midnight)
-var time_of_day := 0.5
-var day_lenght_seconds := 20
+var time_of_day := 0.20
+var day_lenght_seconds := 60 * 60 * 60
 
 func _ready() -> void:
 	apply_time_to_sun()
